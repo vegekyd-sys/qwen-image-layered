@@ -8,17 +8,18 @@ import zipfile
 from typing import Optional
 
 import numpy as np
-import torch
 from cog import BasePredictor, Input, Path
-from diffusers import QwenImageLayeredPipeline
-from PIL import Image
 
 MAX_SEED = np.iinfo(np.int32).max
 
 
 class Predictor(BasePredictor):
     def setup(self):
-        """Load model into GPU memory."""
+        """Load model into GPU memory (deferred import to avoid cog schema issues)."""
+        import torch
+        from diffusers import QwenImageLayeredPipeline
+
+        self.torch = torch
         self.pipeline = QwenImageLayeredPipeline.from_pretrained(
             "Qwen/Qwen-Image-Layered",
             torch_dtype=torch.bfloat16,
@@ -70,6 +71,9 @@ class Predictor(BasePredictor):
         ),
     ) -> Path:
         """Run layer decomposition and return a ZIP of RGBA PNG layers."""
+        from PIL import Image
+        torch = self.torch
+
         if seed == 0:
             seed = random.randint(1, MAX_SEED)
 
