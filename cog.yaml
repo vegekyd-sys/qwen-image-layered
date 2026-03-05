@@ -1,0 +1,19 @@
+build:
+  gpu: true
+  cuda: "12.4"
+  python_version: "3.11"
+  python_packages:
+    - "torch==2.5.1"
+    - "torchvision==0.20.1"
+    - "diffusers @ git+https://github.com/huggingface/diffusers"
+    - "transformers>=4.51.3"
+    - "accelerate"
+    - "safetensors"
+    - "sentencepiece"
+    - "protobuf"
+    - "pillow"
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+
+predict: "predict.py:Predictor"
