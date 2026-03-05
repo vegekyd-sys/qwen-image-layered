@@ -1,10 +1,10 @@
 build:
   gpu: true
-  cuda: "12.6"
+  cuda: "12.1"
   python_version: "3.11"
   python_packages:
-    - "torch==2.6.0"
-    - "torchvision==0.21.0"
+    - "torch==2.5.1"
+    - "torchvision==0.20.1"
     - "diffusers @ git+https://github.com/huggingface/diffusers"
     - "transformers>=4.51.3"
     - "accelerate"
@@ -12,6 +12,7 @@ build:
     - "sentencepiece"
     - "protobuf"
     - "pillow"
+    - "flash-attn>=2.7.0"
   system_packages:
     - "libgl1-mesa-glx"
     - "libglib2.0-0"
