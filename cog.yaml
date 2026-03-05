@@ -12,6 +12,9 @@ build:
     - "sentencepiece"
     - "protobuf"
     - "pillow"
+    - "huggingface_hub"
+  run:
+    - "python -c \"from huggingface_hub import snapshot_download; snapshot_download('Qwen/Qwen-Image-Layered', local_dir='/src/model_cache')\""
   system_packages:
     - "libgl1-mesa-glx"
     - "libglib2.0-0"

@@ -20,8 +20,10 @@ class Predictor(BasePredictor):
         from diffusers import QwenImageLayeredPipeline
 
         self.torch = torch
+        # Load from pre-cached weights (downloaded during Docker build)
+        model_path = "/src/model_cache"
         self.pipeline = QwenImageLayeredPipeline.from_pretrained(
-            "Qwen/Qwen-Image-Layered",
+            model_path,
             torch_dtype=torch.bfloat16,
         ).to("cuda")
 
