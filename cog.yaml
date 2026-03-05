@@ -12,7 +12,8 @@ build:
     - "sentencepiece"
     - "protobuf"
     - "pillow"
-    - "flash-attn>=2.7.0"
+  run:
+    - "pip install flash-attn==2.7.4 --no-build-isolation"
   system_packages:
     - "libgl1-mesa-glx"
     - "libglib2.0-0"
